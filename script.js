@@ -26,7 +26,7 @@ document.addEventListener("dragover", function(event) {
 	  if(targetImg.id !=== draggedImg.id && targetImg.className==="image"){
 var change=document.createElement("div")
 event.target.parentNode.insertBefore(change,event.target)
-draggedImg.parentNode.insertBefore(event.target, draggedImage);
+draggedImg.parentNode.insertBefore(event.target, draggedImg);
 
 change.parentNode.insertBefore(draggedImg,change)
 

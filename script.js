@@ -35,14 +35,6 @@ document.addEventListener("drop", function(event) {
     }
 });
 
-	}
-});
-
-
-
-
-
-
 
 
 

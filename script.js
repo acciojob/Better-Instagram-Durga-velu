@@ -1,17 +1,14 @@
-//your code here
-
-et images = document.querySelectorAll(".image");
+let images = document.querySelectorAll(".image");
 
 images.forEach((img) => {
     img.addEventListener("dragstart", function(event) {
-        event.dataTransfer.setData("image", event.target.id);
+        event.dataTransfer.setData("imageId", event.target.id);
+        event.target.classList.add("selected");
     });
 
-    img.addEventListener("dragend", function () {
+    img.addEventListener("dragend", function(event) {
         event.target.classList.remove("selected");
     });
-
-	
 });
 
 document.addEventListener("dragover", function(event) {
@@ -20,16 +17,23 @@ document.addEventListener("dragover", function(event) {
 
 document.addEventListener("drop", function(event) {
     event.preventDefault();
-  
-    var data = event.dataTransfer.getData("image");
-    var draggedImg = document.getElementById(data);
-    var targetImg = event.target;
 
-    if (targetImg.id !== draggedImg.id && targetImg.className === "image") {
-       var changeImg=targetImg.style.backgroundImage;
+    var draggedId = event.dataTransfer.getData("imageId");
+    var draggedImg = document.getElementById(draggedId);
 
-targetImg.style.backgroundImage=draggedImg.style.backgroundImage;
-		draggedImg.style.backgroundImage=changeImg
+    // Ensure target is a valid .image div
+    var targetImg = event.target.classList.contains("image") ? event.target : event.target.closest(".image");
+
+    // Proceed if target is valid and different from dragged
+    if (targetImg && targetImg.id !== draggedImg.id) {
+        // Swap the background images
+        let draggedStyle = window.getComputedStyle(draggedImg).backgroundImage;
+        let targetStyle = window.getComputedStyle(targetImg).backgroundImage;
+
+        targetImg.style.backgroundImage = draggedStyle;
+        draggedImg.style.backgroundImage = targetStyle;
+    }
+});
 
 	}
 });

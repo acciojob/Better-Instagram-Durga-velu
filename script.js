@@ -21,12 +21,12 @@ document.addEventListener("drop", function(event) {
     var draggedId = event.dataTransfer.getData("imageId");
     var draggedImg = document.getElementById(draggedId);
 
-    // Ensure target is a valid .image div
+   
     var targetImg = event.target.classList.contains("image") ? event.target : event.target.closest(".image");
 
-    // Proceed if target is valid and different from dragged
+   
     if (targetImg && targetImg.id !== draggedImg.id) {
-        // Swap the background images
+        
         let draggedStyle = window.getComputedStyle(draggedImg).backgroundImage;
         let targetStyle = window.getComputedStyle(targetImg).backgroundImage;
 

@@ -6,6 +6,12 @@ images.forEach((img) => {
     img.addEventListener("dragstart", function(event) {
         event.dataTransfer.setData("image", event.target.id);
     });
+
+    img.addEventListener("dragend", function () {
+        event.target.classList.remove("selected");
+    });
+
+	
 });
 
 document.addEventListener("dragover", function(event) {

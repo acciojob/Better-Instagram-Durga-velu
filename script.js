@@ -1,39 +1,32 @@
 //your code here
 
-let images=document.querySelectorAll("image")
+et images = document.querySelectorAll(".image");
 
-images.forEach((img)=>{
-
-	img.addEventListener("dragStart",function(event){
-	event.dataTransfer.setData("image", event.target.id)	
-	});
+images.forEach((img) => {
+    img.addEventListener("dragstart", function(event) {
+        event.dataTransfer.setData("image", event.target.id);
+    });
 });
 
 document.addEventListener("dragover", function(event) {
     event.preventDefault();
-  });
+});
 
-  document.addEventListener("drop", function(event) {
+document.addEventListener("drop", function(event) {
     event.preventDefault();
-   
-      var data = event.dataTransfer.getData("image");
+  
+    var data = event.dataTransfer.getData("image");
+    var draggedImg = document.getElementById(data);
+    var targetImg = event.target;
 
-	  var draggedImg=document.getElementById("data")
+    if (targetImg.id !== draggedImg.id && targetImg.className === "image") {
+       var changeImg=targetImg.style.backgroundImage;
 
-	  var targetImg=event.target;
+targetImg.style.backgroundImage=draggedImg.style.backgroundImage;
+		draggedImg.style.backgroundImage=changeImg
 
-
-	  if(targetImg.id !=== draggedImg.id && targetImg.className==="image"){
-var change=document.createElement("div")
-event.target.parentNode.insertBefore(change,event.target)
-draggedImg.parentNode.insertBefore(event.target, draggedImg);
-
-change.parentNode.insertBefore(draggedImg,change)
-
-		  change.parentNode.removeChild(change)
-	  }
-    
-  });
+	}
+});
 
 
 
